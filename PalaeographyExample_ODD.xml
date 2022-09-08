@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>ODD for Palaeographical Examples using TEI and IIIF</title>
+        <author>Sean M. Winslow</author>
+      </titleStmt>
+      <publicationStmt>
+        <p>for use by whoever wants it</p>
+      </publicationStmt>
+      <notesStmt>
+        <note type="ns">https://github.com/larkvi/PalaeographyExample_ODD</note>
+      </notesStmt>
+      <sourceDesc>
+        <p>created on Thursday 8th September 2022 12:55:14 PM</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <divGen type="toc"/>
+    </front>
+    <body>
+      <p>Customization demonstrating a simple method for integrating IIIF images of paleographical examples for ease of re-use and lookup.</p>
+      <schemaSpec ident="PalaeographyExample_ODD" docLang="en" prefix="tei_" xml:lang="en">
+        <moduleRef key="core" except=""/>
+        <moduleRef key="tei" except=""/>
+        <moduleRef key="header" except=""/>
+        <moduleRef key="textstructure" except=""/>
+        <moduleRef key="msdescription" except=""/>
+        <moduleRef key="linking" except=""/>
+        <moduleRef key="gaiji" except=""/>
+        <moduleRef key="namesdates" except=""/>
+        <moduleRef key="figures" except=""/>
+        <moduleRef key="textcrit" except=""/>
+        <moduleRef key="transcr" except=""/>
+        <moduleRef key="tagdocs" except=""/>
+        <moduleRef key="certainty" except=""/>
+        <moduleRef key="analysis" except=""/>
+        <elementSpec ident="letterformDesc" mode="add" ns="http://www.tei-c.org/ns/1.0">
+          <desc>Contains elements describing specific palaeographical or typographical&#13;
+            letterforms.</desc>
+          <classes>
+            <memberOf key="model.pPart.msdesc"/>
+            <memberOf key="att.global"/>
+          </classes>
+          <content>
+            <sequence>
+              <elementRef key="letterform" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="letterformExample" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        <elementSpec ident="letterform" mode="add" ns="http://www.tei-c.org/ns/1.0">
+          <desc>Specifies an individual letterform. May be a single character, using <gi>c</gi> or
+              <gi>g</gi>, a punctuation mark using <gi>c</gi> or <gi>pc</gi>, or longer strings of
+            characters using members of model.segLike.</desc>
+          <classes>
+            <memberOf key="att.global"/>
+          </classes>
+          <content>
+            <alternate>
+              <textNode/>
+              <classRef key="model.gLike"/>
+              <classRef key="model.segLike"/>
+            </alternate>
+          </content>
+        </elementSpec>
+        <elementSpec ident="letterformExample" mode="add" ns="http://www.tei-c.org/ns/1.0">
+          <desc>Contains one or more <gi>facsimile</gi>; or <gi>graphic</gi> element(s) linking to a
+            specific representation of a character or segment described in the corresponding
+              <gi>letterform</gi> element.</desc>
+          <classes>
+            <memberOf key="att.global"/>
+          </classes>
+          <content>
+            <alternate minOccurs="0" maxOccurs="unbounded">
+              <elementRef key="facsimile"/>
+              <elementRef key="graphic"/>
+            </alternate>
+          </content>
+        </elementSpec>
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>
